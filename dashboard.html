@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2 class="logo">UACMS</h2>
+        <ul>
+            <li class="active">Dashboard</li>
+            <li>My Profile</li>
+            <li>Update Account</li>
+            <li>Change Password</li>
+            <li>Activity Logs</li>
+            <li>Notifications</li>
+            <li>Support</li>
+            <li id="logoutBtn">Logout</li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <header>
+            <h1>Welcome Back, User</h1>
+            <span class="date" id="dateDisplay"></span>
+        </header>
+
+        <section class="cards">
+
+            <div class="card">
+                <h3>Account Status</h3>
+                <p>Your account is active and secure.</p>
+            </div>
+
+            <div class="card">
+                <h3>Recent Notifications</h3>
+                <p>You have 2 unread notifications.</p>
+            </div>
+
+            <div class="card">
+                <h3>Last Login</h3>
+                <p>Tracking your login history helps secure your account.</p>
+            </div>
+
+            <div class="card">
+                <h3>Support</h3>
+                <p>Need help? Contact the help desk anytime.</p>
+            </div>
+
+        </section>
+    </div>
+
+    <!-- JS -->
+    <script src="assets/js/dashboard.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+/* --- HERO SECTION --- */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.welcome-text h1 {
+    font-size: 40px;
+    color: #1c3faa;
+    margin-bottom: 10px;
+}
+
+.welcome-text p {
+    color: #4a4a4a;
+    font-size: 18px;
+    margin-bottom: 50px;
+}
+
+/* --- PORTAL CARDS --- */
+.portal-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.portal-card {
+    width: 300px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+}
+
+.portal-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+
+.portal-icon {
+    width: 80px;
+    margin-bottom: 15px;
+}
+
+.portal-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    margin-top: 12px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.portal-btn.admin {
+    background: #1c3faa;
+}
+
+.portal-btn.user {
+    background: #0a7cff;
+}
+
+.portal-btn:hover {
+    opacity: 0.8;
+}
