@@ -18,3 +18,18 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
 
     alert("Front-end validation passed! Backend PHP will handle real registration later.");
 });
+fetch(githubRawURL)
+    .then(response => response.text())
+    .then(jsonString => {
+        // Format JSON cleanly
+        try {
+            const parsed = JSON.parse(jsonString);
+            jsonString = JSON.stringify(parsed, null, 4);
+        } catch (e) {
+            // If it's not valid JSON, show raw text
+        }
+
+        document.getElementById("code-block").textContent = jsonString;
+        hljs.highlightAll();
+    });
+
