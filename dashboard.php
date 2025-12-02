@@ -1,16 +1,25 @@
+<?php
+session_start();
+
+// Prevent access if not logged in
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: user_login.html");
+    exit();
+}
+
+// Load user info
+$fullname = $_SESSION['user_fullname'] ?? "User";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 
-        User Access Control Management System
-    </title>
-
     <title>User Dashboard</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="user/dashboard.css">
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
 
@@ -24,7 +33,7 @@
 <div class="sidebar" id="sidebar">
     <h2>User Panel</h2>
     <ul>
-        <li><a href="dashboard.php">🏠 Dashboard</a></li>
+<li><a href="dashboard.php">🏠 Dashboard</a></li>
 
         <li class="section">PROFILE</li>
         <li><a href="profile.php">👤 View Profile</a></li>
@@ -53,13 +62,44 @@
     </ul>
 </div>
 
-  <li class="section">ACCOUNT</li>
-              
-    </ul>
-</div>
+
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <header>
+            <h1>Welcome Back, <?php echo htmlspecialchars($fullname); ?>!</h1>
+            <span class="date" id="dateDisplay"></span>
+        </header>
+
+        <section class="cards">
+
+            <div class="card">
+                <h3>Account Status</h3>
+                <p>Your account is active and secure.</p>
+            </div>
+
+            <div class="card">
+                <h3>Notifications</h3>
+                <p>You have 2 unread notifications.</p>
+            </div>
+
+            <div class="card">
+                <h3>Last Login</h3>
+                <p>Tracking your login history helps secure your account.</p>
+            </div>
+
+            <div class="card">
+                <h3>Support</h3>
+                <p>Need help? Contact the help desk anytime.</p>
+            </div>
+
+        </section>
+    </div>
 
     <!-- JS -->
-    <script src="user/dashboard.js"></script>
+    <script src="dashboard.js"></script>
 
 </body>
 </html>

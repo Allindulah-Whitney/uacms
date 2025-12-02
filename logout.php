@@ -2,5 +2,5 @@
 session_start();
 session_unset();
 session_destroy();
-header("Location: user_login.html");
+header("Location: frontend/user_login.html");
 exit();

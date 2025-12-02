@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION['logged_in'] = true;
 
             // redirect to dashboard
-            header("Location: backend/user/dashboard.php");
+            header("Location: frontend/user/dashboard.php");
             exit();
         } else {
             echo "Invalid email or password!";
@@ -42,9 +42,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo "User not found!";
     }
 }
-?>
+function logLogin($conn, $user_id, $status) {
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $agent = $_SERVER['HTTP_USER_AGENT'];
 
-
-            
+    $stmt = $conn->prepare("INSERT INTO login_history (user_id, ip_address, user_agent, status) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("isss", $user_id, $ip, $agent, $status);
+    $stmt->execute();
 }
+
 ?>
+
+
