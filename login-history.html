@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login History</title>
+
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <script defer src="assets/js/dashboard.js"></script>
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <h2 class="logo">ADMIN</h2>
+        <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+        <li onclick="navigate('us_dashboard.html')"><span>🏠</span> Dashboard</li>
+        <li onclick="navigate('profile.html')"><span>👤</span> Profile</li>
+        <li onclick="navigate('notifications.html')"><span>🔔</span> Notifications</li>
+        <li onclick="navigate('messages.html')"><span>💬</span> Messages</li>
+        <li onclick="navigate('role.html')"><span>🧩</span> My Role</li>
+        <li onclick="navigate('permissions.html')"><span>🔑</span> Permissions</li>
+        <li class="active"><span>📜</span> Login History</li>
+        <li onclick="navigate('activity-logs.html')"><span>📊</span> Activity Logs</li>
+        <li onclick="navigate('security.html')"><span>⚙️</span> Security Center</li>
+        <li id="logout"><span>🚪</span> Logout</li>
+    </ul>
+</aside>
+
+
+<!-- MAIN CONTENT -->
+<section class="main-content">
+    <div class="inner-container">
+
+        <!-- Page Header -->
+        <div class="header-box">
+            <div>
+                <h1 class="page-title">Login History</h1>
+                <p>Tracks your access logs, device information, and last login attempts.</p>
+            </div>
+        </div>
+
+
+        <!-- Login History -->
+        <div class="card">
+            <h2>Recent Login Attempts</h2>
+
+            <table class="table log-table">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Device</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>04 Jan 2025 - 09:24 AM</td>
+                        <td>Windows PC (Chrome)</td>
+                        <td>Nairobi, Kenya</td>
+                        <td><span class="status success">Success</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>04 Jan 2025 - 08:40 AM</td>
+                        <td>Android Phone</td>
+                        <td>Nairobi, Kenya</td>
+                        <td><span class="status success">Success</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>03 Jan 2025 - 10:02 PM</td>
+                        <td>MacBook (Safari)</td>
+                        <td>Accra, Ghana</td>
+                        <td><span class="status failed">Failed</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>03 Jan 2025 - 02:33 PM</td>
+                        <td>Windows PC (Edge)</td>
+                        <td>Nairobi, Kenya</td>
+                        <td><span class="status success">Success</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>02 Jan 2025 - 07:19 AM</td>
+                        <td>iPhone</td>
+                        <td>Kisumu, Kenya</td>
+                        <td><span class="status success">Success</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- Danger Zone -->
+        <div class="card danger-box">
+            <h2>Terminate Active Sessions</h2>
+            <p>You can logout other connected sessions and devices if suspicious login attempts are detected.</p>
+            <button class="btn-danger">Logout Other Devices</button>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>

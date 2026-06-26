@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notifications | UACMS</title>
+
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <h2 class="logo">ADMIN</h2>
+        <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+        <li onclick="navigate('us_dashboard.html')"><span>🏠</span> Dashboard</li>
+        <li onclick="navigate('profile.html')"><span>👤</span> Profile</li>
+
+        <li class="active"><span>🔔</span> Notifications</li>
+
+        <li onclick="navigate('messages.html')"><span>💬</span> Messages</li>
+        <li onclick="navigate('role.html')"><span>🧩</span> My Role</li>
+        <li onclick="navigate('permissions.html')"><span>🔑</span> Permissions</li>
+        <li onclick="navigate('login-history.html')"><span>📜</span> Login History</li>
+        <li onclick="navigate('activity-logs.html')"><span>📊</span> Activity Logs</li>
+        <li onclick="navigate('security.html')"><span>⚙️</span> Security Center</li>
+
+        <li id="logout"><span>🚪</span> Logout</li>
+    </ul>
+</aside>
+
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+    <div class="inner-container">
+
+        <!-- Page Header -->
+        <div class="header-box">
+            <h1>Notifications</h1>
+            <p>Your recent alerts & system activity updates.</p>
+        </div>
+
+        <!-- Notification List -->
+        <div class="card notification-feed">
+
+            <div class="notif-item">
+                <span class="notif-icon">🔔</span>
+                <p>New security rules were applied to your account.</p>
+            </div>
+
+            <div class="notif-item">
+                <span class="notif-icon">🔔</span>
+                <p>Your access role was updated by the administrator.</p>
+            </div>
+
+            <div class="notif-item">
+                <span class="notif-icon">🔔</span>
+                <p>Scheduled platform maintenance will occur tomorrow.</p>
+            </div>
+
+            <div class="notif-item">
+                <span class="notif-icon">🔔</span>
+                <p>You received a new message from Admin.</p>
+            </div>
+
+        </div>
+
+        <button class="btn-primary">Clear Notifications</button>
+
+    </div>
+</div>
+
+<script src="assets/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Messages</title>
+  <link rel="stylesheet" href="assets/css/sidebar.css">
+  <link rel="stylesheet" href="assets/css/admin_dashboard.css">
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h2 class="logo">ADMIN</h2>
+      <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+      <a href="adm_dashboard.html"><li>🏠 <span class="item">Dashboard</span></li></a>
+      <a href="admin_users.html"><li>👥 <span class="item">Users</span></li></a>
+      <a href="admin_roles.html"><li>🔑 <span class="item">Roles</span></li></a>
+      <a href="admin_permissions.html"><li>🛡️ <span class="item">Permissions</span></li></a>
+      <a href="admin_logs.html"><li>📜 <span class="item">Activity Logs</span></li></a>
+      <a href="admin_login_history.html"><li>📅 <span class="item">Login History</span></li></a>
+      <a href="admin_notifications.html"><li>🔔 <span class="item">Notifications</span></li></a>
+      <a href="admin_messages.html"><li>💬 <span class="item">Messages</span></li></a>
+      <a href="admin_audit.html"><li>📘 <span class="item">Audit Trail</span></li></a>
+      <a href="admin_reports.html"><li>📰 <span class="item">Reports</span></li></a>
+      <a href="admin_settings.html"><li>⚙️ <span class="item">Settings</span></li></a>
+      <a href="admin_profile.html"><li>👤 <span class="item">Profile</span></li></a>
+      <a href="#"><li id="logout">🚪 <span class="item">Logout</span></li></a>
+    </ul>
+
+  </aside>
+
+  <div class="main-content">
+    <div class="content-container">
+
+      <h1 class="page-title">Messages</h1>
+
+      <div class="messages-layout">
+
+        <!-- Sidebar -->
+        <div class="message-users">
+          <input type="text" class="search-input" placeholder="Search messages...">
+
+          <div class="user-item active">
+            <strong> </strong>
+            <p></p>
+          </div>
+
+          <div class="user-item">
+            <strong>System Bot</strong>
+            <p>Your audit report is ready.</p>
+          </div>
+
+        </div>
+
+        <!-- Chat Area -->
+        <div class="message-chat">
+          <div class="chat-box">
+
+            <div class="chat-message left">
+              Hello Admin, please help with my account update.
+            </div>
+
+            <div class="chat-message right">
+              Sure — what exactly do you need updated?
+            </div>
+
+          </div>
+
+          <div class="chat-input-area">
+            <input type="text" placeholder="Type a message…">
+            <button class="send-btn">Send</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div><script>document.addEventListener("DOMContentLoaded", () => {
+    const chatBox = document.querySelector(".chat-box");
+
+    fetch("api/admin/get_messages.php")
+        .then(res => res.json())
+        .then(data => {
+            if(data.status === "success") {
+                chatBox.innerHTML = "";
+                data.messages.forEach(msg => {
+                    const div = document.createElement("div");
+                    div.className = "chat-message left"; // or right if admin is sender
+                    div.textContent = `${msg.sender}: ${msg.message}`;
+                    chatBox.appendChild(div);
+                });
+            }
+        });
+
+    // Send message
+    const sendBtn = document.querySelector(".send-btn");
+    const input = document.querySelector(".chat-input-area input");
+    sendBtn.addEventListener("click", () => {
+        const msg = input.value.trim();
+        if(!msg) return;
+
+        // Assume admin is sending to a specific user_id = 1 for demo
+        const formData = new FormData();
+        formData.append("user_id", 1);
+        formData.append("message", msg);
+
+        fetch("api/admin/send_message.php", {
+            method: "POST",
+            body: formData
+        }).then(res => res.json())
+          .then(res => {
+              if(res.status === "success") {
+                  const div = document.createElement("div");
+                  div.className = "chat-message right";
+                  div.textContent = `You: ${msg}`;
+                  chatBox.appendChild(div);
+                  input.value = "";
+              } else {
+                  alert(res.message);
+              }
+          });
+    });
+});
+</script>
+
+  
+  <script src="assets/js/admin.js"></script>
+
+</body>
+</html>

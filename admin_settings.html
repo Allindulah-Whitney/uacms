@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Settings</title>
+  <link rel="stylesheet" href="assets/css/sidebar.css">
+  <link rel="stylesheet" href="assets/css/admin_dashboard.css">
+</head>
+
+<body>
+
+  
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h2 class="logo">ADMIN</h2>
+      <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+      <a href="adm_dashboard.html"><li>🏠 <span class="item">Dashboard</span></li></a>
+      <a href="admin_users.html"><li>👥 <span class="item">Users</span></li></a>
+      <a href="admin_roles.html"><li>🔑 <span class="item">Roles</span></li></a>
+      <a href="admin_permissions.html"><li>🛡️ <span class="item">Permissions</span></li></a>
+      <a href="admin_logs.html"><li>📜 <span class="item">Activity Logs</span></li></a>
+      <a href="admin_login_history.html"><li>📅 <span class="item">Login History</span></li></a>
+      <a href="admin_notifications.html"><li>🔔 <span class="item">Notifications</span></li></a>
+      <a href="admin_messages.html"><li>💬 <span class="item">Messages</span></li></a>
+      <a href="admin_audit.html"><li>📘 <span class="item">Audit Trail</span></li></a>
+      <a href="admin_reports.html"><li>📰 <span class="item">Reports</span></li></a>
+      <a href="admin_settings.html"><li>⚙️ <span class="item">Settings</span></li></a>
+      <a href="admin_profile.html"><li>👤 <span class="item">Profile</span></li></a>
+      <a href="#"><li id="logout">🚪 <span class="item">Logout</span></li></a>
+    </ul>
+
+  </aside>
+
+  <div class="main-content">
+    <div class="content-container">
+
+      <h1 class="page-title">System Settings</h1>
+
+      <div class="card settings-grid">
+
+        <!-- General Settings -->
+        <div class="setting-box">
+          <h3>General</h3>
+          <label>System Name</label>
+          <input type="text" value="UACMS">
+
+          <label>Admin Email</label>
+          <input type="email" value="admin@uacms.com">
+
+          <button class="save-btn">Save Changes</button>
+        </div>
+
+        <!-- Authentication -->
+        <div class="setting-box">
+          <h3>Authentication</h3>
+          
+          <label>
+            <input type="checkbox" checked> Enable 2FA (Two-Factor)
+          </label>
+
+          <label>
+            <input type="checkbox" checked> Lock account after 5 failed attempts
+          </label>
+
+          <label>Password Expiry (days)</label>
+          <input type="number" value="90">
+
+          <button class="save-btn">Update</button>
+        </div>
+
+        <!-- Notification Settings -->
+        <div class="setting-box">
+          <h3>Notifications</h3>
+
+          <label>
+            <input type="checkbox" checked> Email Alerts
+          </label>
+
+          <label>
+            <input type="checkbox"> Login Alerts
+          </label>
+
+          <label>
+            <input type="checkbox" checked> System Updates Alerts
+          </label>
+
+          <button class="save-btn">Apply</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="assets/js/admin.js"></script>
+
+</body>
+</html>

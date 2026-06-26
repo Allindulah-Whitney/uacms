@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Activity Logs | UACMS</title>
+
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <script defer src="assets/js/dashboard.js"></script>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <h2 class="logo">ADMIN</h2>
+        <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+        <li onclick="navigate('us_dashboard.html')"><span>🏠</span> Dashboard</li>
+        <li onclick="navigate('profile.html')"><span>👤</span> Profile</li>
+        <li onclick="navigate('notifications.html')"><span>🔔</span> Notifications</li>
+        <li onclick="navigate('messages.html')"><span>💬</span> Messages</li>
+        <li onclick="navigate('role.html')"><span>🧩</span> My Role</li>
+        <li onclick="navigate('permissions.html')"><span>🔑</span> Permissions</li>
+        <li onclick="navigate('login_history.html')"><span>📜</span> Login History</li>
+
+        <li class="active"><span>📊</span> Activity Logs</li>
+
+        <li onclick="navigate('security_center.html')"><span>⚙️</span> Security Center</li>
+        <li id="logout"><span>🚪</span> Logout</li>
+    </ul>
+</aside>
+
+
+<!-- MAIN CONTENT -->
+<section class="main-content">
+    <div class="inner-container">
+
+        <div class="header-box">
+            <div>
+                <h1 class="page-title">User Activity Log Trail</h1>
+                <p>Observe all account changes and platform interactions.</p>
+            </div>
+        </div>
+
+        <!-- FILTER SECTION -->
+        <div class="card">
+            <h2>Filter Logs</h2>
+
+            <div class="filter-grid">
+                <select class="filter-input">
+                    <option value="all">Show: All Events</option>
+                    <option value="profile">Profile Changes</option>
+                    <option value="login">Login Attempts</option>
+                    <option value="security">Security Updates</option>
+                    <option value="role">Role Access</option>
+                </select>
+
+                <input type="date" class="filter-input">
+                <input type="date" class="filter-input">
+
+                <button class="btn-primary">Apply Filter</button>
+            </div>
+        </div>
+
+
+        <!-- ACTIVITY LOG TABLE -->
+        <div class="card">
+            <h2>Recent Activities</h2>
+
+            <table class="table log-table">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Activity Description</th>
+                        <th>Status</th>
+                        <th>Device</th>
+                    </tr>
+                </thead>
+
+                    
+
+        <!-- ARCHIVE ACTIVITIES -->
+        <div class="card danger-box">
+            <h2>Archive Activities</h2>
+            <p>
+                Archiving removes logs from the active table but it does not delete them permanently.
+            </p>
+
+            <button class="btn-danger">Archive Logs</button>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>

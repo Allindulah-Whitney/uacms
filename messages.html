@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Messages | UACMS</title>
+
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <h2 class="logo">ADMIN</h2>
+        <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+        <li onclick="navigate('us_dashboard.html')"><span>🏠</span> Dashboard</li>
+        <li onclick="navigate('profile.html')"><span>👤</span> Profile</li>
+        <li onclick="navigate('notifications.html')"><span>🔔</span> Notifications</li>
+
+        <li class="active"><span>💬</span> Messages</li>
+
+        <li onclick="navigate('role.html')"><span>🧩</span> My Role</li>
+        <li onclick="navigate('permissions.html')"><span>🔑</span> Permissions</li>
+        <li onclick="navigate('login-history.html')"><span>📜</span> Login History</li>
+        <li onclick="navigate('activity-logs.html')"><span>📊</span> Activity Logs</li>
+        <li onclick="navigate('security.html')"><span>⚙️</span> Security Center</li>
+
+        <li id="logout"><span>🚪</span> Logout</li>
+    </ul>
+</aside>
+
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+    <div class="container">
+
+        <!-- PAGE HEADER -->
+        <div class="header-box">
+            <h1>Messages</h1>
+            <p>View messages from administrators and system alerts.</p>
+        </div>
+
+        <!-- INBOX CARD -->
+        <div class="card">
+            <h2>Inbox</h2>
+
+            <div class="message-item">
+                <span class="msg-icon">💬</span>
+                <p><strong>Admin:</strong> Your upgrade request is being reviewed</p>
+            </div>
+
+            <div class="message-item">
+                <span class="msg-icon">💬</span>
+                <p><strong>System:</strong> Security settings reminder</p>
+            </div>
+
+            <div class="message-item">
+                <span class="msg-icon">💬</span>
+                <p><strong>Admin:</strong> Profile approved successfully</p>
+            </div>
+        </div>
+
+        <!-- NEW MESSAGE BUTTON -->
+        <button class="btn-primary">Send New Message</button>
+
+    </div>
+</div>
+
+<script src="assets/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard</title>
+      <link rel="stylesheet" href="assets/css/sidebar.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <script src="assets/js/dashboard.js" defer></script>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h2 class="logo">ADMIN</h2>
+      <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+            <li class="active" onclick="navigate('us_dashboard.html')"><span>🏠</span> Dashboard</li>
+      <li onclick="navigate('profile.html')"><span>👤</span> Profile</li>
+      <li onclick="navigate('notifications.html')"><span>🔔</span> Notifications</li>
+      <li onclick="navigate('messages.html')"><span>💬</span> Messages</li>
+      <li onclick="navigate('role.html')"><span>🧩</span> My Role</li>
+      <li onclick="navigate('permissions.html')"><span>🔑</span> Permissions</li>
+      <li onclick="navigate('login-history.html')"><span>📜</span> Login History</li>
+      <li onclick="navigate('activity-logs.html')"><span>📊</span> Activity Logs</li>
+      <li onclick="navigate('security.html')"><span>⚙️</span> Security Center</li>
+      <li id="logout"><span>🚪</span> Logout</li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <section class="main-content">
+
+      <!-- TOP SUMMARY -->
+      <div class="content-container">
+        <h1 class="page-title">User Dashboard</h1>
+        <h2>Welcome Back, User</h2>
+        <p>Your personalized dashboard summary and recent activity.</p>
+        <button class="btn-primary" onclick="navigate('profile.html')">Edit Profile</button>
+      </div>
+
+      <!-- TOP STATS -->
+      <div class="content-wrapper stats-grid">
+        <div class="stat-card">
+          <h3>Profile Completion</h3>
+          <div class="progress-bar"><div class="progress" style="width: 80%"></div></div>
+          <p class="percent-text">0% Complete</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>Unread Notifications</h3>
+          <h1>0</h1>
+          <button class="btn-outline" onclick="navigate('notifications.html')">Open</button>
+        </div>
+
+        <div class="stat-card">
+          <h3>Messages</h3>
+          <h1>0</h1>
+          <button class="btn-outline" onclick="navigate('messages.html')">View</button>
+        </div>
+      </div>
+
+      <!-- TWO COLUMN GRID -->
+      <div class="grid-2">
+
+        <div class="card">
+          <h2>Recent Activity</h2>
+          <div class="activity-feed">
+            <p>✔ Updated profile details</p>
+            <p>✔ Changed display settings</p>
+            <p>✔ Viewed permission settings</p>
+            <p>✔ Logged in from verified device</p>
+          </div>
+          <button onclick="navigate('activity-logs.html')" class="btn-small">View Full Log</button>
+        </div>
+
+        <div class="card">
+          <h2>Latest Notifications</h2>
+          <div class="notification-feed">
+            <p>🔔 New admin announcement posted</p>
+            <p>🛡 Security notice updated</p>
+            <p>💬 New system message received</p>
+          </div>
+          <button onclick="navigate('notifications.html')" class="btn-small">Open Notifications</button>
+        </div>
+
+      </div>
+
+      <!-- ROLE ACCESS -->
+      <div class="card">
+        <h2>Your Access Level</h2>
+        <div class="role-card">
+            <h3>Standard User</h3>
+            <ul>
+                <li>✔ View and Edit Profile</li>
+                <li>✔ Send Messages</li>
+                <li>✔ Receive Notifications</li>
+                <li>❌ Manage Other Users</li>
+                <li>❌ Change Entire System Setup</li>
+            </ul>
+        </div>
+
+        <div class="upgrade-section">
+            <p>Need more privileges?</p>
+            <button class="btn-primary" onclick="navigate('upgrade.html')">Request Upgrade</button>
+        </div>
+      </div>
+
+      <!-- SECURITY STATUS -->
+      <div class="card">
+        <h2>Security Status</h2>
+        <p><strong>Last password update:</strong> 26 days ago</p>
+        <p><strong>2FA Status:</strong> ❌ Disabled</p>
+        <button class="btn-primary" onclick="navigate('security.html')">Secure Account Now</button>
+      </div>
+
+  </section>
+
+</body>
+</html>

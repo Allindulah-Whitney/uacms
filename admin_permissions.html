@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Permissions</title>
+  <link rel="stylesheet" href="assets/css/sidebar.css">
+  <link rel="stylesheet" href="assets/css/admin_dashboard.css">
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h2 class="logo">ADMIN</h2>
+      <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+      <a href="adm_dashboard.html"><li>🏠 <span class="item">Dashboard</span></li></a>
+      <a href="admin_users.html"><li>👥 <span class="item">Users</span></li></a>
+      <a href="admin_roles.html"><li>🔑 <span class="item">Roles</span></li></a>
+      <a href="admin_permissions.html"><li>🛡️ <span class="item">Permissions</span></li></a>
+      <a href="admin_logs.html"><li>📜 <span class="item">Activity Logs</span></li></a>
+      <a href="admin_login_history.html"><li>📅 <span class="item">Login History</span></li></a>
+      <a href="admin_notifications.html"><li>🔔 <span class="item">Notifications</span></li></a>
+      <a href="admin_messages.html"><li>💬 <span class="item">Messages</span></li></a>
+      <a href="admin_audit.html"><li>📘 <span class="item">Audit Trail</span></li></a>
+      <a href="admin_reports.html"><li>📰 <span class="item">Reports</span></li></a>
+      <a href="admin_settings.html"><li>⚙️ <span class="item">Settings</span></li></a>
+      <a href="admin_profile.html"><li>👤 <span class="item">Profile</span></li></a>
+      <a href="#"><li id="logout">🚪 <span class="item">Logout</span></li></a>
+    </ul>
+
+  </aside>
+
+  <div class="main-content">
+    <div class="content-container">
+
+      <h1 class="page-title">Permissions</h1>
+
+      <div class="top-actions">
+        <input type="text" placeholder="Search permissions..." class="search-input">
+        <button class="add-btn">Add Permission</button>
+      </div>
+
+      <div class="table-container">
+        <table class="table">
+
+          <thead>
+            <tr>
+              <th>Permission</th>
+              <th>Description</th>
+              <th>Assigned Roles</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr>
+              <td>View Users</td>
+              <td>Allows viewing of all user accounts</td>
+              <td>Admin, Manager</td>
+              <td>
+                <button class="table-btn edit">Edit</button>
+                <button class="table-btn danger">Delete</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Edit Users</td>
+              <td>Allows editing of user profiles</td>
+              <td>Admin</td>
+              <td>
+                <button class="table-btn edit">Edit</button>
+                <button class="table-btn danger">Delete</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>View Logs</td>
+              <td>Access to system activity logs</td>
+              <td>Admin, Manager</td>
+              <td>
+                <button class="table-btn edit">Edit</button>
+                <button class="table-btn danger">Delete</button>
+              </td>
+            </tr>
+
+          </tbody>
+
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  
+  <script src="assets/js/admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Security | UACMS</title>
+
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <script defer src="assets/js/dashboard.js"></script>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <h2 class="logo">USER</h2>
+        <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+        <li onclick="navigate('us_dashboard.html')"><span>🏠</span> Dashboard</li>
+        <li onclick="navigate('profile.html')"><span>👤</span> Profile</li>
+        <li onclick="navigate('notifications.html')"><span>🔔</span> Notifications</li>
+        <li onclick="navigate('messages.html')"><span>💬</span> Messages</li>
+        <li onclick="navigate('role.html')"><span>🧩</span> My Role</li>
+        <li onclick="navigate('permissions.html')"><span>🔑</span> Permissions</li>
+        <li onclick="navigate('login_history.html')"><span>📜</span> Login History</li>
+        <li onclick="navigate('activity_logs.html')"><span>📊</span> Activity Logs</li>
+
+        <li class="active"><span>⚙️</span> Security Center</li>
+
+        <li id="logout"><span>🚪</span> Logout</li>
+    </ul>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header-box">
+            <h1>Account Security Center</h1>
+            <p>Manage your passwords, login devices and account protection.</p>
+        </div>
+
+
+        <!-- Password Update -->
+        <div class="card">
+            <h2>Update Password</h2>
+            
+            <div class="form-grid">
+                <input type="password" placeholder="Current Password" class="input">
+                <input type="password" placeholder="New Password" class="input">
+                <input type="password" placeholder="Confirm New Password" class="input">
+            </div>
+
+            <button class="btn-primary">Update Password</button>
+        </div>
+
+
+        <!-- 2FA Section -->
+        <div class="card">
+            <h2>Two-Factor Authentication (2FA)</h2>
+
+            <p><strong>Status:</strong> <span class="warning-text">Disabled</span></p>
+
+            <button class="btn-primary">Enable 2FA</button>
+
+            <div class="info-message">
+                Two-factor authentication helps prevent unauthorized access by
+                requiring an OTP verification during login.
+            </div>
+        </div>
+
+
+        <!-- Devices Log -->
+        <div class="card">
+            <h2>Recent Login Devices</h2>
+
+            <table class="table log-table">
+                <thead>
+                    <tr>
+                        <th>Device</th>
+                        <th>Location</th>
+                        <th>Date & Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Windows PC - Chrome</td>
+                        <td>Nairobi, Kenya</td>
+                        <td>01 Feb, 10:24 AM</td>
+                        <td><span class="status granted">Authorized</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>iPhone 14</td>
+                        <td>Mombasa, Kenya</td>
+                        <td>27 Jan, 8:42 PM</td>
+                        <td><span class="status denied">Blocked</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>MacBook Air</td>
+                        <td>Nairobi, Kenya</td>
+                        <td>19 Jan, 6:31 PM</td>
+                        <td><span class="status granted">Authorized</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- Danger Zone -->
+        <div class="card danger-box">
+            <h2>Danger Zone</h2>
+
+            <p>You can force logout from all active devices besides this one.</p>
+
+            <button class="btn-danger">Logout From All Devices</button>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

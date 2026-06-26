@@ -11,15 +11,21 @@
     <div class="login-container">
         <h2>User Login</h2>
 
-        <form id="userLoginForm">
+        <!-- MAIN LOGIN FORM -->
+        <form id="userLoginForm" action="#" method="POST">
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter user username" required>
+            </div>
+
             <div class="input-group">
                 <label>Email</label>
-                <input type="email" id="email" placeholder="Enter your email">
+                <input type="email" id="email" placeholder="Enter your email" required>
             </div>
 
             <div class="input-group">
                 <label>Password</label>
-                <input type="password" id="password" placeholder="Enter your password">
+                <input type="password" id="password" placeholder="Enter your password" required>
             </div>
 
             <button type="submit" class="login-btn">Login</button>
@@ -31,11 +37,11 @@
             <p class="register-link">
                 Don’t have an account? <a href="register.html">Register</a>
             </p>
+
         </form>
     </div>
 
     <script src="assets/js/user_login.js"></script>
-<pre><code id="code-block" class="language-json"></code></pre>
 
 </body>
 </html>

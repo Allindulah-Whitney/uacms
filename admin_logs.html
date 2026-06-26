@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Activity Logs</title>
+  <link rel="stylesheet" href="assets/css/sidebar.css">
+  <link rel="stylesheet" href="assets/css/admin_dashboard.css">
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h2 class="logo">ADMIN</h2>
+      <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+      <a href="adm_dashboard.html"><li>🏠 <span class="item">Dashboard</span></li></a>
+      <a href="admin_users.html"><li>👥 <span class="item">Users</span></li></a>
+      <a href="admin_roles.html"><li>🔑 <span class="item">Roles</span></li></a>
+      <a href="admin_permissions.html"><li>🛡️ <span class="item">Permissions</span></li></a>
+      <a href="admin_logs.html"><li>📜 <span class="item">Activity Logs</span></li></a>
+      <a href="admin_login_history.html"><li>📅 <span class="item">Login History</span></li></a>
+      <a href="admin_notifications.html"><li>🔔 <span class="item">Notifications</span></li></a>
+      <a href="admin_messages.html"><li>💬 <span class="item">Messages</span></li></a>
+      <a href="admin_audit.html"><li>📘 <span class="item">Audit Trail</span></li></a>
+      <a href="admin_reports.html"><li>📰 <span class="item">Reports</span></li></a>
+      <a href="admin_settings.html"><li>⚙️ <span class="item">Settings</span></li></a>
+      <a href="admin_profile.html"><li>👤 <span class="item">Profile</span></li></a>
+      <a href="#"><li id="logout">🚪 <span class="item">Logout</span></li></a>
+    </ul>
+
+  </aside>
+
+  <div class="main-content">
+    <div class="content-container">
+
+      <h1 class="page-title">System Activity Logs</h1>
+
+      <div class="top-actions">
+        <input type="text" placeholder="Search logs..." class="search-input">
+        <button class="add-btn">Export Logs</button>
+      </div>
+
+      <div class="table-container">
+        <table class="table">
+
+          <thead>
+            <tr>
+              <th>Log ID</th>
+              <th>User</th>
+              <th>Activity</th>
+              <th>IP Address</th>
+              <th>Date & Time</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+          <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+          </tbody>
+
+        </table>
+        <button class="add-btn" id="exportLogsBtn">Export Logs</button>
+
+      </div>
+
+    </div>
+  </div>
+
+  
+  <script src="assets/js/admin.js"></script><script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+  fetch("api/admin/get_logs.php")
+    .then(res => res.json())
+    .then(data => {
+      if (data.status !== "success") {
+        console.error("Failed to load logs");
+        return;
+      }
+
+      const tbody = document.querySelector(".table tbody");
+      tbody.innerHTML = ""; // Clear default empty rows
+
+      data.data.forEach(log => {
+        const row = `
+          <tr>
+            <td>${log.log_id}</td>
+            <td>${log.username ?? "Unknown"}</td>
+            <td>${log.activity}</td>
+            <td>${log.ip_address}</td>
+            <td>${log.created_at}</td>
+          </tr>
+        `;
+        tbody.innerHTML += row;
+      });
+    });
+});
+  document.getElementById("exportLogsBtn").addEventListener("click", () => {
+    // Optional: add filter params dynamically
+    const userFilter = document.getElementById("userFilter")?.value || '';
+    const typeFilter = document.getElementById("typeFilter")?.value || '';
+    const fromDate   = document.getElementById("fromDate")?.value || '';
+    const toDate     = document.getElementById("toDate")?.value || '';
+
+    const params = new URLSearchParams({
+        user_id: userFilter,
+        type: typeFilter,
+        from: fromDate,
+        to: toDate
+    });
+
+    window.location.href = `api/admin/export_logs.php?${params.toString()}`;
+});
+
+
+</script>
+</body>
+</html>

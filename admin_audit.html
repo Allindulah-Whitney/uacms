@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Admin • Audit (Improved)</title>
+
+  <!-- Optional external CSS you already use (keeps look consistent) -->
+  <link rel="stylesheet" href="assets/css/sidebar.css">
+  <link rel="stylesheet" href="assets/css/admin_dashboard.css">
+
+  <!-- Small page-specific styles to make this file self-contained and readable -->
+  <style>
+    :root{
+      --bg:#f5f7fb; --card:#fff; --muted:#6b7280; --accent:#3556ff;
+      --green:#10b981; --amber:#f59e0b; --red:#ef4444;
+      --radius:10px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    body{background:var(--bg); margin:0; color:#111; line-height:1.45}
+    .main-content{margin-left:260px; padding:28px}
+    .content-container{max-width:1200px; margin:auto}
+    .panel{background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:0 8px 24px rgba(15,23,42,0.06); margin-bottom:18px}
+    .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .filters input, .filters select{padding:8px 10px;border:1px solid #e6eaf0;border-radius:8px;min-width:140px}
+    .table-actions{display:flex;gap:8px;align-items:center}
+    .small-btn{background:#eef2ff;border:1px solid #dbe7ff;padding:8px 10px;border-radius:8px;cursor:pointer}
+    .export-btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
+    .data-table{width:100%;border-collapse:collapse;margin-top:12px}
+    .data-table thead th{background:#fbfdff;padding:12px;text-align:left;border-bottom:1px solid #eef2f6;font-weight:600;color:var(--muted)}
+    .data-table tbody td{padding:10px;border-bottom:1px solid #f0f3f8;vertical-align:middle;font-size:14px}
+    .risk{display:inline-block;padding:6px 10px;border-radius:8px;color:#fff;font-weight:700;font-size:12px}
+    .risk.low{background:var(--green)} .risk.med{background:var(--amber)} .risk.high{background:var(--red)}
+    .badge-type{font-size:12px;padding:6px 8px;border-radius:8px;background:#f3f4f6;color:#111}
+    .pagination{display:flex;gap:6px;align-items:center;margin-top:12px}
+    .pagination button{padding:6px 10px;border-radius:8px;border:1px solid #e6eaf0;background:white;cursor:pointer}
+    .pagination button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .summary{margin-top:12px;color:var(--muted)}
+    /* responsive */
+    @media (max-width:900px){
+      .main-content{margin-left:0;padding:16px}
+      .filters input, .filters select{min-width:120px}
+      .data-table thead{display:none}
+      .data-table tbody td{display:block;padding:10px;border-bottom:1px solid #eef2f6}
+      .data-table tbody tr{margin-bottom:8px;background:#fff;border-radius:8px;padding:6px}
+    }
+  </style>
+</head>
+<body>
+
+    <div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h2 class="logo">ADMIN</h2>
+      <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+      <a href="adm_dashboard.html"><li>🏠 <span class="item">Dashboard</span></li></a>
+      <a href="admin_users.html"><li>👥 <span class="item">Users</span></li></a>
+      <a href="admin_roles.html"><li>🔑 <span class="item">Roles</span></li></a>
+      <a href="admin_permissions.html"><li>🛡️ <span class="item">Permissions</span></li></a>
+      <a href="admin_logs.html"><li>📜 <span class="item">Activity Logs</span></li></a>
+      <a href="admin_login_history.html"><li>📅 <span class="item">Login History</span></li></a>
+      <a href="admin_notifications.html"><li>🔔 <span class="item">Notifications</span></li></a>
+      <a href="admin_messages.html"><li>💬 <span class="item">Messages</span></li></a>
+      <a href="admin_audit.html"><li>📘 <span class="item">Audit Trail</span></li></a>
+      <a href="admin_reports.html"><li>📰 <span class="item">Reports</span></li></a>
+      <a href="admin_settings.html"><li>⚙️ <span class="item">Settings</span></li></a>
+      <a href="admin_profile.html"><li>👤 <span class="item">Profile</span></li></a>
+      <a href="#"><li id="logout">🚪 <span class="item">Logout</span></li></a>
+    </ul>
+
+  </div>
+
+  <div class="main-content">
+    <div class="content-container">
+
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <div class="filters" aria-label="Audit filters">
+            <input id="searchInput" type="search" placeholder="Search (user, action, ip...)" autocomplete="off">
+            <select id="userFilter" aria-label="Filter by user"><option value="">All users</option></select>
+            <select id="typeFilter" aria-label="Filter by type">
+              <option value="">All event types</option>
+              <option value="login">Login</option>
+              <option value="role_change">Role Change</option>
+              <option value="permission_change">Permission Change</option>
+              <option value="data_export">Data Export</option>
+              <option value="system">System</option>
+            </select>
+            <select id="severityFilter" aria-label="Filter by severity">
+              <option value="">All severities</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+            <label style="display:flex;align-items:center;gap:6px">From <input id="fromDate" type="date"></label>
+            <label style="display:flex;align-items:center;gap:6px">To <input id="toDate" type="date"></label>
+          </div>
+
+          <div class="table-actions">
+            <button id="exportCsv" class="export-btn" title="Export CSV">Export CSV</button>
+            <button id="exportJson" class="small-btn" title="Export JSON">Export JSON</button>
+            <button id="refreshBtn" class="small-btn" title="Refresh">Refresh</button>
+          </div>
+        </div>
+
+        <table id="auditTable" class="data-table" aria-describedby="audit-desc">
+          <thead>
+            <tr>
+              <th>#</th><th>Time</th><th>User</th><th>Type</th><th>Action</th><th>IP</th><th>Severity</th><th>Risk</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <div class="pagination" id="pagination" aria-label="Pagination"></div>
+      </div>
+
+      <div class="panel">
+        <h3>Risk Summary</h3>
+        <p class="summary">High: <strong id="highCount">0</strong> · Medium: <strong id="medCount">0</strong> · Low: <strong id="lowCount">0</strong></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Optional: include your global admin js here -->
+  <script src="assets/js/admin_dashboard.js" defer></script>
+
+  <script>
+  /**************************************************************************
+   * Improved client-side Audit Trail
+   * - Uses pre-parsed data for performance
+   * - Debounced search
+   * - Efficient filtering + pagination
+   * - CSV / JSON export
+   * - Easy to swap in backend fetch (replace sampleData)
+   **************************************************************************/
+
+  // ---------- sample data (demo). Replace this array with backend response.
+  const sampleData = [
+    { id: 101, time: "2025-12-10 14:22:31", user: "alice", type: "login", action: "Successful login", ip: "41.89.12.34", severity: "low" },
+    { id: 102, time: "2025-12-10 13:47:02", user: "bob", type: "permission_change", action: "Removed admin role from user 77", ip: "197.233.44.9", severity: "high" },
+    { id: 103, time: "2025-12-09 18:12:10", user: "carol", type: "role_change", action: "Assigned 'editor' role to user 54", ip: "197.220.10.1", severity: "medium" },
+    { id: 104, time: "2025-12-09 12:05:55", user: "dave", type: "data_export", action: "Exported user list (CSV)", ip: "41.80.2.15", severity: "high" },
+    { id: 105, time: "2025-12-08 11:23:10", user: "alice", type: "system", action: "Updated security policy", ip: "41.89.12.34", severity: "medium" },
+    { id: 106, time: "2025-12-07 09:33:03", user: "eve", type: "login", action: "Failed password attempt", ip: "102.65.21.7", severity: "low" },
+    { id: 107, time: "2025-12-07 08:42:20", user: "frank", type: "login", action: "Successful login", ip: "102.65.21.7", severity: "low" },
+    { id: 108, time: "2025-12-06 22:11:44", user: "bob", type: "permission_change", action: "Added 'manage_users' permission to role 2", ip: "197.233.44.9", severity: "medium" },
+    { id: 109, time: "2025-12-05 15:07:33", user: "george", type: "role_change", action: "Removed role 3 from user 99", ip: "41.86.11.45", severity: "medium" },
+    { id: 110, time: "2025-12-04 10:00:01", user: "alice", type: "login", action: "Successful login", ip: "41.89.12.34", severity: "low" },
+    { id: 111, time: "2025-12-03 16:22:55", user: "harry", type: "data_export", action: "Exported audit logs", ip: "197.211.3.21", severity: "high" },
+    { id: 112, time: "2025-12-02 07:45:12", user: "irene", type: "system", action: "Cleared cached tokens", ip: "41.83.44.88", severity: "low" }
+  ];
+
+  // ---------- config / state
+  const PAGE_SIZE = 8;
+  let parsedData = [];   // data preprocessed for fast filtering
+  let filtered = [];     // current filtered set
+  let currentPage = 1;
+
+  // DOM references
+  const tbody = document.querySelector("#auditTable tbody");
+  const pagination = document.getElementById("pagination");
+  const userFilter = document.getElementById("userFilter");
+  const typeFilter = document.getElementById("typeFilter");
+  const severityFilter = document.getElementById("severityFilter");
+  const searchInput = document.getElementById("searchInput");
+  const fromDate = document.getElementById("fromDate");
+  const toDate = document.getElementById("toDate");
+  const exportCsvBtn = document.getElementById("exportCsv");
+  const exportJsonBtn = document.getElementById("exportJson");
+  const refreshBtn = document.getElementById("refreshBtn");
+  const highCountEl = document.getElementById("highCount");
+  const medCountEl = document.getElementById("medCount");
+  const lowCountEl = document.getElementById("lowCount");
+
+  // ---------- utilities
+  function parseDateTime(str){
+    // Accepts "YYYY-MM-DD hh:mm:ss" (as sample). Fallback to Date parsing.
+    if (!str) return null;
+    const dt = new Date(str.replace(' ', 'T'));
+    return isNaN(dt) ? new Date(str) : dt;
+  }
+
+  function debounce(fn, wait=250){
+    let t;
+    return (...args) => { clearTimeout(t); t = setTimeout(()=>fn(...args), wait); };
+  }
+
+  // ---------- preprocessing
+  function preprocess(data){
+    parsedData = data.map(item => ({
+      ...item,
+      dateObj: parseDateTime(item.time),
+      searchable: `${item.user} ${item.action} ${item.ip} ${item.type}`.toLowerCase()
+    }));
+
+    // populate user filter (unique users)
+    const users = Array.from(new Set(parsedData.map(d => d.user))).sort();
+    users.forEach(u=>{
+      const opt = document.createElement('option'); opt.value = u; opt.textContent = u;
+      userFilter.appendChild(opt);
+    });
+
+    // initial filter
+    filtered = [...parsedData];
+    currentPage = 1;
+    render();
+  }
+
+  // ---------- filtering (fast)
+  function applyFilters(){
+    const s = searchInput.value.trim().toLowerCase();
+    const uf = userFilter.value;
+    const tf = typeFilter.value;
+    const sf = severityFilter.value;
+    const fFrom = fromDate.value ? new Date(fromDate.value) : null;
+    const fTo = toDate.value ? new Date(toDate.value) : null;
+
+    filtered = parsedData.filter(d => {
+      if (uf && d.user !== uf) return false;
+      if (tf && d.type !== tf) return false;
+      if (sf && d.severity !== sf) return false;
+      if (s && !d.searchable.includes(s)) return false;
+      if (fFrom && d.dateObj < fFrom) return false;
+      if (fTo) {
+        // allow through end of day
+        const end = new Date(fTo); end.setHours(23,59,59,999);
+        if (d.dateObj > end) return false;
+      }
+      return true;
+    });
+
+    currentPage = 1;
+    render();
+  }
+  const debouncedApply = debounce(applyFilters, 180);
+
+  // ---------- render functions
+  function computeRiskCls(sev){
+    if(sev === 'high') return {txt:'HIGH', cls:'risk high'};
+    if(sev === 'medium') return {txt:'MED', cls:'risk med'};
+    return {txt:'LOW', cls:'risk low'};
+  }
+
+  function renderTable(){
+    tbody.innerHTML = '';
+    const start = (currentPage-1)*PAGE_SIZE;
+    const pageItems = filtered.slice(start, start + PAGE_SIZE);
+
+    if (pageItems.length === 0){
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td colspan="8" style="text-align:center;padding:18px;color:${'#6b7280'}">No records found</td>`;
+      tbody.appendChild(tr);
+      return;
+    }
+
+    const frag = document.createDocumentFragment();
+    pageItems.forEach(row => {
+      const r = computeRiskCls(row.severity);
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${row.id}</td>
+        <td>${row.time}</td>
+        <td>${row.user}</td>
+        <td><span class="badge-type">${row.type}</span></td>
+        <td>${escapeHtml(row.action)}</td>
+        <td>${row.ip}</td>
+        <td>${row.severity}</td>
+        <td><span class="${r.cls}">${r.txt}</span></td>
+      `;
+      frag.appendChild(tr);
+    });
+    tbody.appendChild(frag);
+  }
+
+  function renderCounts(){
+    const high = filtered.filter(x=>x.severity==='high').length;
+    const med = filtered.filter(x=>x.severity==='medium').length;
+    const low = filtered.filter(x=>x.severity==='low').length;
+    highCountEl.textContent = high;
+    medCountEl.textContent = med;
+    lowCountEl.textContent = low;
+  }
+
+  function renderPagination(){
+    pagination.innerHTML = '';
+    const pages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+    for(let p=1;p<=pages;p++){
+      const btn = document.createElement('button');
+      btn.textContent = p;
+      if (p === currentPage) btn.classList.add('active');
+      btn.addEventListener('click', ()=>{ currentPage = p; renderTable(); renderPagination(); window.scrollTo({top:0,behavior:'smooth'}); });
+      pagination.appendChild(btn);
+    }
+  }
+
+  function render(){
+    renderTable();
+    renderCounts();
+    renderPagination();
+  }
+
+  // ---------- exports
+  function exportCSV(){
+    const rows = [['id','time','user','type','action','ip','severity']];
+    filtered.forEach(r => rows.push([r.id, r.time, r.user, r.type, r.action, r.ip, r.severity]));
+    const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+    downloadBlob(csv, 'text/csv;charset=utf-8;', 'audit_export.csv');
+  }
+
+  function exportJSON(){
+    downloadBlob(JSON.stringify(filtered, null, 2), 'application/json;charset=utf-8;', 'audit_export.json');
+  }
+
+  function downloadBlob(content, type, filename){
+    const blob = new Blob([content], {type});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  // ---------- helpers
+  function escapeHtml(str){
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#039;');
+  }
+
+  // ---------- events
+  searchInput.addEventListener('input', debouncedApply);
+  [userFilter, typeFilter, severityFilter, fromDate, toDate].forEach(el=>{
+    el.addEventListener('change', applyFilters);
+  });
+  exportCsvBtn.addEventListener('click', exportCSV);
+  exportJsonBtn.addEventListener('click', exportJSON);
+  refreshBtn.addEventListener('click', ()=>{ /* placeholder for backend fetch */ applyFilters(); });
+
+  // ---------- initialize (preprocess and render)
+  (function init(){
+    preprocess(sampleData);
+  })();
+
+  </script>
+</body>
+</html>

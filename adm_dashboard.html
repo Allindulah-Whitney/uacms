@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin • Dashboard</title>
+  <link rel="stylesheet" href="assets/css/sidebar.css">
+  <link rel="stylesheet" href="assets/css/admin_dashboard.css">
+</head>
+<body>
+  <!-- Sidebar (shared) -->
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h2 class="logo">ADMIN</h2>
+      <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+      <a href="adm_dashboard.html"><li>🏠 <span class="item">Dashboard</span></li></a>
+      <a href="admin_users.html"><li>👥 <span class="item">Users</span></li></a>
+      <a href="admin_roles.html"><li>🔑 <span class="item">Roles</span></li></a>
+      <a href="admin_permissions.html"><li>🛡️ <span class="item">Permissions</span></li></a>
+      <a href="admin_logs.html"><li>📜 <span class="item">Activity Logs</span></li></a>
+      <a href="admin_login_history.html"><li>📅 <span class="item">Login History</span></li></a>
+      <a href="admin_notifications.html"><li>🔔 <span class="item">Notifications</span></li></a>
+      <a href="admin_messages.html"><li>💬 <span class="item">Messages</span></li></a>
+      <a href="admin_audit.html"><li>📘 <span class="item">Audit Trail</span></li></a>
+      <a href="admin_reports.html"><li>📰 <span class="item">Reports</span></li></a>
+      <a href="admin_settings.html"><li>⚙️ <span class="item">Settings</span></li></a>
+      <a href="admin_profile.html"><li>👤 <span class="item">Profile</span></li></a>
+      <a href="#"><li id="logout">🚪 <span class="item">Logout</span></li></a>
+    </ul>
+  </div>
+
+  <main class="main-content">
+    <h1 class="page-title">Admin Dashboard</h1>
+    <header>
+      <h1>Dashboard Overview</h1>
+    </header>
+
+    <!-- STATISTICS OVERVIEW -->
+    <div class="stats">
+      <div class="card">
+        <h3>Total Users</h3>
+        <p></p>
+      </div>
+      <div class="card">
+        <h3>Active Roles</h3>
+        <p></p>
+      </div>
+      <div class="card">
+        <h3>Pending Requests</h3>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="card large">
+      <h3>Recent Activities</h3>
+      <p></p>
+    </div>
+
+  </main>
+
+    
+  
+  <script src="assets/js/admin_dashboard.js"></script>
+</body>
+</html>

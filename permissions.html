@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Permissions | UACMS</title>
+
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <script defer src="assets/js/dashboard.js"></script>
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <h2 class="logo">USER</h2>
+        <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+        <li onclick="navigate('us_dashboard.html')"><span>🏠</span> Dashboard</li>
+        <li onclick="navigate('profile.html')"><span>👤</span> Profile</li>
+        <li onclick="navigate('notifications.html')"><span>🔔</span> Notifications</li>
+        <li onclick="navigate('messages.html')"><span>💬</span> Messages</li>
+        <li onclick="navigate('role.html')"><span>🧩</span> My Role</li>
+
+        <li class="active"><span>🔑</span> Permissions</li>
+
+        <li onclick="navigate('login_history.html')"><span>📜</span> Login History</li>
+        <li onclick="navigate('activity_logs.html')"><span>📊</span> Activity Logs</li>
+        <li onclick="navigate('security_center.html')"><span>⚙️</span> Security Center</li>
+
+        <li id="logout"><span>🚪</span> Logout</li>
+    </ul>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="container">
+
+        <div class="header-box">
+            <h1>User Permissions</h1>
+            <p>Below are the current access controls assigned to your account.</p>
+        </div>
+
+        <div class="card">
+            <h2>Assigned Permissions</h2>
+
+            <div class="permission-table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Permission</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>View Dashboard</td>
+                            <td>Access to monitor account overview</td>
+                            <td><span class="status granted">Granted</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Edit Profile</td>
+                            <td>Modify personal user information</td>
+                            <td><span class="status granted">Granted</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Send Messages</td>
+                            <td>Communicate with platform users</td>
+                            <td><span class="status granted">Granted</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>View Permissions</td>
+                            <td>Check assigned privileges</td>
+                            <td><span class="status granted">Granted</span></td>
+                        </tr>
+
+                        <tr class="restricted-row">
+                            <td>Manage Users</td>
+                            <td>Create, edit or delete other users</td>
+                            <td><span class="status denied">Denied</span></td>
+                        </tr>
+
+                        <tr class="restricted-row">
+                            <td>Access System Reports</td>
+                            <td>View advanced analytics and event logs</td>
+                            <td><span class="status denied">Denied</span></td>
+                        </tr>
+
+                        <tr class="restricted-row">
+                            <td>Change Platform Settings</td>
+                            <td>Modify core system configuration</td>
+                            <td><span class="status denied">Denied</span></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="card upgrade-block">
+            <h2>Need Additional Permissions?</h2>
+            <p>Some permissions require a higher tier or administrator approval.</p>
+
+            <button class="btn-primary" onclick="navigate('upgrade.html')">
+                Request Access Upgrade
+            </button>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notifications</title>
+  <link rel="stylesheet" href="assets/css/sidebar.css">
+  <link rel="stylesheet" href="assets/css/admin_dashboard.css">
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h2 class="logo">ADMIN</h2>
+      <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+      <a href="adm_dashboard.html"><li>🏠 <span class="item">Dashboard</span></li></a>
+      <a href="admin_users.html"><li>👥 <span class="item">Users</span></li></a>
+      <a href="admin_roles.html"><li>🔑 <span class="item">Roles</span></li></a>
+      <a href="admin_permissions.html"><li>🛡️ <span class="item">Permissions</span></li></a>
+      <a href="admin_logs.html"><li>📜 <span class="item">Activity Logs</span></li></a>
+      <a href="admin_login_history.html"><li>📅 <span class="item">Login History</span></li></a>
+      <a href="admin_notifications.html"><li>🔔 <span class="item">Notifications</span></li></a>
+      <a href="admin_messages.html"><li>💬 <span class="item">Messages</span></li></a>
+      <a href="admin_audit.html"><li>📘 <span class="item">Audit Trail</span></li></a>
+      <a href="admin_reports.html"><li>📰 <span class="item">Reports</span></li></a>
+      <a href="admin_settings.html"><li>⚙️ <span class="item">Settings</span></li></a>
+      <a href="admin_profile.html"><li>👤 <span class="item">Profile</span></li></a>
+      <a href="#"><li id="logout">🚪 <span class="item">Logout</span></li></a>
+    </ul>
+
+  </aside>
+
+  <div class="main-content">
+    <div class="content-container">
+
+      <h1 class="page-title">Notifications</h1>
+
+      <div class="notification-list">
+
+        <div class="notification-card">
+          <h3>New User Registered</h3>
+          <p>A new user has created an account.</p>
+          <span class="timestamp">5 mins ago</span>
+        </div>
+
+        <div class="notification-card unread">
+          <h3>Permission Change</h3>
+          <p>Manager role permissions were updated.</p>
+          <span class="timestamp">12 mins ago</span>
+        </div>
+
+        <div class="notification-card">
+          <h3>Audit Report Generated</h3>
+          <p>Your system audit report is ready.</p>
+          <span class="timestamp">1 hour ago</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  
+  <script src="assets/js/admin.js"></script>
+
+</body>
+</html>

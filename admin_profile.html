@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Profile</title>
+  <link rel="stylesheet" href="assets/css/sidebar.css">
+  <link rel="stylesheet" href="assets/css/admin_dashboard.css">
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h2 class="logo">ADMIN</h2>
+      <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+      <a href="adm_dashboard.html"><li>🏠 <span class="item">Dashboard</span></li></a>
+      <a href="admin_users.html"><li>👥 <span class="item">Users</span></li></a>
+      <a href="admin_roles.html"><li>🔑 <span class="item">Roles</span></li></a>
+      <a href="admin_permissions.html"><li>🛡️ <span class="item">Permissions</span></li></a>
+      <a href="admin_logs.html"><li>📜 <span class="item">Activity Logs</span></li></a>
+      <a href="admin_login_history.html"><li>📅 <span class="item">Login History</span></li></a>
+      <a href="admin_notifications.html"><li>🔔 <span class="item">Notifications</span></li></a>
+      <a href="admin_messages.html"><li>💬 <span class="item">Messages</span></li></a>
+      <a href="admin_audit.html"><li>📘 <span class="item">Audit Trail</span></li></a>
+      <a href="admin_reports.html"><li>📰 <span class="item">Reports</span></li></a>
+      <a href="admin_settings.html"><li>⚙️ <span class="item">Settings</span></li></a>
+      <a href="admin_profile.html"><li>👤 <span class="item">Profile</span></li></a>
+      <a href="#"><li id="logout">🚪 <span class="item">Logout</span></li></a>
+    </ul>
+
+  </aside>
+
+  <div class="main-content">
+    <div class="content-container">
+
+      <h1 class="page-title">Admin Profile</h1>
+
+      <div class="profile-wrapper">
+
+        <!-- LEFT: Profile Info -->
+        <div class="profile-card">
+          <img src="assets/img/avatar.png" class="profile-img" alt="">
+          <h2>Administrator</h2>
+          <p>System Owner</p>
+
+          <button class="save-btn">Change Photo</button>
+        </div>
+
+        <!-- RIGHT: Editable Details -->
+        <div class="profile-details">
+
+          <div class="detail-group">
+            <label>Full Name</label>
+            <input type="text" value="">
+          </div>
+
+          <div class="detail-group">
+            <label>Email</label>
+            <input type="email" value="">
+          </div>
+
+          <div class="detail-group">
+            <label>Phone</label>
+            <input type="text" value=" ">
+          </div>
+
+          <div class="detail-group">
+            <label>Role</label>
+            <input type="text" value=" " disabled>
+          </div>
+
+          <button class="save-btn wide">Save Changes</button>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  
+  <script src="assets/js/admin.js"></script>
+
+</body>
+</html>

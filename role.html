@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Role | UACMS</title>
+
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <script defer src="assets/js/dashboard.js"></script>
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <h2 class="logo">USER</h2>
+        <button id="toggleBtn" class="toggle-btn">&#9776;</button>
+    </div>
+
+    <ul class="nav-list">
+        <li onclick="navigate('us_dashboard.html')"><span>🏠</span> Dashboard</li>
+        <li onclick="navigate('profile.html')"><span>👤</span> Profile</li>
+        <li onclick="navigate('notifications.html')"><span>🔔</span> Notifications</li>
+        <li onclick="navigate('messages.html')"><span>💬</span> Messages</li>
+
+        <li class="active"><span>🧩</span> My Role</li>
+
+        <li onclick="navigate('permissions.html')"><span>🔑</span> Permissions</li>
+        <li onclick="navigate('login_history.html')"><span>📜</span> Login History</li>
+        <li onclick="navigate('activity_logs.html')"><span>📊</span> Activity Logs</li>
+        <li onclick="navigate('security_center.html')"><span>⚙️</span> Security Center</li>
+        <li id="logout"><span>🚪</span> Logout</li>
+    </ul>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="container">
+
+        <div class="header-box">
+            <h1>My Access Role</h1>
+            <p>View your current access tier, usage restrictions, and upgrade options.</p>
+        </div>
+
+        <!-- Role Summary Card -->
+        <div class="card">
+            <h2>Your Role: <span class="role-label highlight">Standard User</span></h2>
+
+            <p>You currently have basic access privileges within the platform.</p>
+
+            <ul class="role-access-list">
+                <li>✔ View and edit your account details</li>
+                <li>✔ Send and receive messages</li>
+                <li>✔ Access notifications and personal analytics</li>
+                <li>❌ No administrative access</li>
+                <li>❌ Cannot manage other users or roles</li>
+            </ul>
+        </div>
+
+        <!-- Allowed vs Restricted -->
+        <div class="grid-2">
+
+            <div class="card">
+                <h3>Allowed Actions</h3>
+                <ul>
+                    <li>✓ View & edit your profile information</li>
+                    <li>✓ View dashboard content relevant to you</li>
+                    <li>✓ Send messages & access notifications</li>
+                    <li>✓ Submit support requests</li>
+                </ul>
+            </div>
+
+            <div class="card disabled-card">
+                <h3>Restricted Actions</h3>
+                <ul>
+                    <li>✗ Modify other user accounts</li>
+                    <li>✗ Configure system or admin settings</li>
+                    <li>✗ Assign or change roles</li>
+                    <li>✗ Access confidential system analytics</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <hr class="divider">
+
+        <div class="card upgrade-block">
+            <h2>Need More Access?</h2>
+            <p>Upgrading your account unlocks administrative tools, analytics & control access.</p>
+
+            <button class="btn-primary" onclick="navigate('upgrade.html')">
+                Request Upgrade
+            </button>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
